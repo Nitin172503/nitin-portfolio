@@ -166,6 +166,8 @@
   .card p{font-size:14px;color:var(--text-dim);margin:0;line-height:1.55;flex:1;}
   .tags{display:flex;flex-wrap:wrap;gap:7px;}
   .tag{font-family:var(--mono);font-size:11px;color:var(--text-dim);border:1px solid var(--line);border-radius:5px;padding:3px 8px;}
+  .card-link{font-family:var(--mono);font-size:12.5px;color:var(--accent);margin-top:2px;align-self:flex-start;border-bottom:1px solid transparent;transition:border-color .2s;}
+  .card-link:hover{border-color:var(--accent-line);}
 
   /* ---------- stack ---------- */
   .stack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:11px;overflow:hidden;}
@@ -237,9 +239,11 @@
     <a href="#top" class="monogram" aria-label="Nitin Avula — home">NA</a>
     <nav aria-label="Primary">
       <ul>
+        <li><a href="#education">academics</a></li>
         <li><a href="#work">work</a></li>
         <li><a href="#projects">projects</a></li>
         <li><a href="#stack">stack</a></li>
+        <li><a href="#results">results</a></li>
         <li><a href="#contact">contact</a></li>
       </ul>
     </nav>
@@ -260,14 +264,173 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
           nitina2505@gmail.com
         </a>
+        <a class="btn" href="Nitin-Avula-Resume.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15h6"/></svg>
+          Résumé
+        </a>
         <a class="btn" href="https://github.com/Nitin172503" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 8.84 21.5c.5.08.66-.22.66-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.16.57.67.48A10 10 0 0 0 12 2Z"/></svg>
           GitHub
         </a>
-        <a class="btn" href="https://www.linkedin.com/in/nitina-312980333" target="_blank" rel="noopener">
+        <a class="btn" href="https://www.linkedin.com/in/nitin-a-312980333" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0Z"/></svg>
           LinkedIn
         </a>
+      </div>
+    </section>
+  </div>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="wrap">
+      <p class="eyebrow">Education</p>
+      <div class="sec-head reveal">
+        <h2>Academics</h2>
+        <span class="idx">01 / education</span>
+      </div>
+      <div class="edu reveal">
+        <div class="edu-item">
+          <div class="deg">M.S., Computer &amp; Information Science &amp; Engineering</div>
+          <div class="sch">University of Florida · Gainesville, FL</div>
+          <div class="yr">Aug 2024 — May 2026</div>
+        </div>
+        <div class="edu-item">
+          <div class="deg">B.Tech, Computer Science &amp; Business Systems</div>
+          <div class="sch">VIT-AP University</div>
+          <div class="yr">Aug 2020 — May 2024</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap">
+      <p class="eyebrow">Experience</p>
+      <div class="sec-head reveal">
+        <h2>Where I've shipped</h2>
+        <span class="idx">02 / work</span>
+      </div>
+
+      <div class="job reveal">
+        <div class="meta-col">
+          <div class="role">Software Engineer Intern</div>
+          <div class="org">Iconize Technologies</div>
+          <div class="when">Oct 2023 — Jun 2024</div>
+        </div>
+        <ul>
+          <li>Built backend <b>microservices</b> for a genomic analytics platform, with modular RESTful APIs that improved researcher query turnaround <span class="chip">30% faster</span></li>
+          <li>Optimized <b>PostgreSQL</b> via index tuning, SQL execution-plan analysis, and connection pooling, cutting average response latency <span class="chip">40% lower</span></li>
+          <li>Architected resilient workflow-orchestration services with validation, retry handling, and fault isolation, lowering pipeline failure rates <span class="chip">25% fewer</span></li>
+          <li>Performed root-cause analysis and production debugging, and authored API/architecture documentation that accelerated team onboarding</li>
+          <li>Automated containerized deploys with <b>Jenkins</b> pipelines, rolling updates, and health monitoring, cutting deploy time from <span class="chip">20 → 6 min</span></li>
+        </ul>
+      </div>
+
+      <div class="job reveal">
+        <div class="meta-col">
+          <div class="role">Data Science Intern</div>
+          <div class="org">SmartInternz</div>
+          <div class="when">May 2023 — Jul 2023</div>
+        </div>
+        <ul>
+          <li>Delivered a production traffic-prediction system using ensemble learning (<b>Random Forest + Gradient Boosting</b>), reaching <span class="chip">92% accuracy</span></li>
+          <li>Deployed a low-latency inference service handling concurrent requests with optimized memory allocation and batching, sustaining <span class="chip">P95 &lt; 200ms</span></li>
+          <li>Built scalable data-preprocessing pipelines in <b>SQL &amp; Python</b> to clean, transform, and validate high-volume datasets</li>
+          <li>Established real-time observability with <b>AWS CloudWatch</b> metrics, logs, and alarms, lowering anomaly detection time <span class="chip">35% faster</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <p class="eyebrow">Independent Builds</p>
+      <div class="sec-head reveal">
+        <h2>Things I've built</h2>
+        <span class="idx">03 / projects</span>
+      </div>
+
+      <div class="proj-grid">
+        <article class="card reveal">
+          <span class="pnum">P-01</span>
+          <h3>Microservice Transaction System</h3>
+          <p>An asynchronous transaction processor built on Spring Boot and Kafka with producer-consumer event streaming, sustaining 50 events/sec under load. Idempotent consumers and transactional writes guarantee durability, ordering, and deduplication.</p>
+          <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Kafka</span><span class="tag">Event-Driven</span></div>
+          <!-- Replace href with the actual repo URL when ready -->
+          <a class="card-link" href="https://github.com/Nitin172503" target="_blank" rel="noopener">View repo ↗</a>
+        </article>
+
+        <article class="card reveal">
+          <span class="pnum">P-02</span>
+          <h3>Scalable AI Fitness Platform</h3>
+          <p>A full-stack system with a session-aware backend serving 200+ concurrent users, cutting redundant AI calls 35% through caching and deduplication. Rate-limited REST endpoints and a real-time React interface with synchronized state.</p>
+          <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Caching</span><span class="tag">REST</span></div>
+          <!-- Replace href with the actual repo URL when ready -->
+          <a class="card-link" href="https://github.com/Nitin172503" target="_blank" rel="noopener">View repo ↗</a>
+        </article>
+
+        <article class="card reveal">
+          <span class="pnum">P-03</span>
+          <h3>Distributed Task Queue</h3>
+          <p>A task queue in Go backed by a Redis broker, with a concurrent worker pool and a race-condition-safe CI pipeline that gates every merge.</p>
+          <div class="tags"><span class="tag">Go</span><span class="tag">Redis</span><span class="tag">Concurrency</span><span class="tag">CI</span></div>
+          <!-- Replace href with the actual repo URL when ready -->
+          <a class="card-link" href="https://github.com/Nitin172503" target="_blank" rel="noopener">View repo ↗</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack">
+    <div class="wrap">
+      <p class="eyebrow">Toolkit</p>
+      <div class="sec-head reveal">
+        <h2>The stack</h2>
+        <span class="idx">04 / stack</span>
+      </div>
+
+      <div class="stack-grid reveal">
+        <div class="stack-col">
+          <h4>Languages</h4>
+          <ul><li>Python</li><li>Java</li><li>Go</li><li>C++</li><li>TypeScript</li><li>SQL</li><li>Rust</li></ul>
+        </div>
+        <div class="stack-col">
+          <h4>Backend &amp; APIs</h4>
+          <ul><li>Spring Boot</li><li>FastAPI &amp; Flask</li><li>Node.js / Express</li><li>Microservices</li><li>Event-Driven Architecture</li></ul>
+        </div>
+        <div class="stack-col">
+          <h4>Data &amp; ML</h4>
+          <ul><li>PostgreSQL &amp; MySQL</li><li>MongoDB / NoSQL</li><li>Vector Search</li><li>Pandas &amp; NumPy</li><li>Random Forest / Gradient Boosting</li></ul>
+        </div>
+        <div class="stack-col">
+          <h4>Cloud &amp; DevOps</h4>
+          <ul><li>AWS (EC2, CloudWatch)</li><li>Docker &amp; Kubernetes</li><li>Jenkins / GitHub Actions</li><li>CI/CD pipelines</li><li>Observability &amp; Monitoring</li></ul>
+        </div>
+      </div>
+
+      <div class="creds reveal">
+        <div class="cred">
+          <div class="cred-mark">JPM</div>
+          <div><div class="cn">JPMorganChase</div><div class="ct">Software Engineering — job simulation</div></div>
+        </div>
+        <div class="cred">
+          <div class="cred-mark">EA</div>
+          <div><div class="cn">Electronic Arts</div><div class="ct">Software Engineering — job simulation</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results">
+    <div class="wrap">
+      <p class="eyebrow">By the numbers</p>
+      <div class="sec-head reveal">
+        <h2>Production results</h2>
+        <span class="idx">05 / results</span>
       </div>
 
       <!-- SIGNATURE: instrument readout of selected results -->
@@ -289,152 +452,14 @@
           </div>
           <div class="cell">
             <div class="val" data-count="92" data-suffix="%">0<span class="unit">%</span></div>
-            <div class="lab">Model accuracy</div>
-            <div class="meta">RF + XGBoost ensemble</div>
+            <div class="lab">Forecast accuracy</div>
+            <div class="meta">RF + Gradient Boosting</div>
           </div>
           <div class="cell">
-            <div class="val" data-count="100" data-suffix="K+">0<span class="unit">K+</span></div>
-            <div class="lab">Records trained</div>
-            <div class="meta">production dataset</div>
+            <div class="val" data-count="200" data-suffix="+">0<span class="unit">+</span></div>
+            <div class="lab">Concurrent users</div>
+            <div class="meta">AI fitness platform</div>
           </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- WORK -->
-  <section id="work">
-    <div class="wrap">
-      <p class="eyebrow">Experience</p>
-      <div class="sec-head reveal">
-        <h2>Where I've shipped</h2>
-        <span class="idx">02 / work</span>
-      </div>
-
-      <div class="job reveal">
-        <div class="meta-col">
-          <div class="role">Software Engineer Intern</div>
-          <div class="org">Iconize Technologies</div>
-          <div class="when">Jan 2024 — Apr 2024</div>
-        </div>
-        <ul>
-          <li>Designed modular <b>Django REST</b> services for a production genomic analytics platform spanning 15+ data entity types, improving query turnaround <span class="chip">30% faster</span></li>
-          <li>Tuned <b>PostgreSQL</b> with 12+ indexes and refactored slow queries, cutting average API latency <span class="chip">40% lower</span></li>
-          <li>Delivered 8+ interactive <b>D3.js</b> dashboards used daily by analyst teams, saving <span class="chip">5 hrs/week</span> of manual reporting</li>
-          <li>Built workflow-orchestration APIs with validation and retry logic across 6-stage pipelines, reducing failed runs <span class="chip">25% fewer</span></li>
-          <li>Automated CI/CD with <b>Jenkins, Docker &amp; Kubernetes</b> (rolling updates, health checks), cutting deploys from <span class="chip">20 → 6 min</span></li>
-        </ul>
-      </div>
-
-      <div class="job reveal">
-        <div class="meta-col">
-          <div class="role">Data Science Intern</div>
-          <div class="org">SmartInternz</div>
-          <div class="when">May 2023 — Jul 2023</div>
-        </div>
-        <ul>
-          <li>Built an ensemble ML model (<b>Random Forest + XGBoost</b>) on 100K+ records reaching <span class="chip">92% accuracy</span></li>
-          <li>Shipped a <b>Flask</b> inference API serving 100+ concurrent users at <span class="chip">P95 &lt; 200ms</span> via request validation and performance logging</li>
-          <li>Instrumented <b>AWS CloudWatch</b> dashboards and alerts, lowering incident detection time <span class="chip">35% faster</span></li>
-          <li>Implemented automated <b>drift detection</b> that triggers retraining workflows to keep the model stable over time</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="wrap">
-      <p class="eyebrow">Independent Builds</p>
-      <div class="sec-head reveal">
-        <h2>Things I've built</h2>
-        <span class="idx">03 / projects</span>
-      </div>
-
-      <div class="proj-grid">
-        <article class="card reveal">
-          <span class="pnum">P-01</span>
-          <h3>Distributed Task Queue</h3>
-          <p>A task queue in Go backed by a Redis broker, with a concurrent worker pool and a race-condition-safe CI pipeline that gates every merge.</p>
-          <div class="tags"><span class="tag">Go</span><span class="tag">Redis</span><span class="tag">Concurrency</span><span class="tag">CI</span></div>
-        </article>
-
-        <article class="card reveal">
-          <span class="pnum">P-02</span>
-          <h3>AI Agent Platform</h3>
-          <p>A full-stack agent platform with RAG pipelines, FAISS vector search, LLM API integration, and persistent conversation memory across sessions.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">RAG</span><span class="tag">FAISS</span><span class="tag">LLM APIs</span></div>
-        </article>
-
-        <article class="card reveal">
-          <span class="pnum">P-03</span>
-          <h3>Delphi → LLVM Compiler</h3>
-          <p>A compiler built with ANTLR4 and Java covering the full path — lexing, parsing, semantic analysis, and LLVM IR code generation.</p>
-          <div class="tags"><span class="tag">Java</span><span class="tag">ANTLR4</span><span class="tag">LLVM</span><span class="tag">Compilers</span></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- STACK -->
-  <section id="stack">
-    <div class="wrap">
-      <p class="eyebrow">Toolkit</p>
-      <div class="sec-head reveal">
-        <h2>The stack</h2>
-        <span class="idx">04 / stack</span>
-      </div>
-
-      <div class="stack-grid reveal">
-        <div class="stack-col">
-          <h4>Languages</h4>
-          <ul><li>Python</li><li>Go</li><li>Java</li><li>TypeScript</li></ul>
-        </div>
-        <div class="stack-col">
-          <h4>Backend &amp; APIs</h4>
-          <ul><li>FastAPI</li><li>Django REST</li><li>Flask</li><li>REST API design</li></ul>
-        </div>
-        <div class="stack-col">
-          <h4>Data &amp; ML</h4>
-          <ul><li>PostgreSQL</li><li>Random Forest / XGBoost</li><li>RAG &amp; FAISS</li><li>D3.js</li></ul>
-        </div>
-        <div class="stack-col">
-          <h4>Infra &amp; Tooling</h4>
-          <ul><li>Docker &amp; Kubernetes</li><li>Jenkins (CI/CD)</li><li>Redis</li><li>AWS CloudWatch</li></ul>
-        </div>
-      </div>
-
-      <div class="creds reveal">
-        <div class="cred">
-          <div class="cred-mark">JPM</div>
-          <div><div class="cn">JPMorganChase</div><div class="ct">Software Engineering — job simulation</div></div>
-        </div>
-        <div class="cred">
-          <div class="cred-mark">EA</div>
-          <div><div class="cn">Electronic Arts</div><div class="ct">Software Engineering — job simulation</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EDUCATION -->
-  <section id="education">
-    <div class="wrap">
-      <p class="eyebrow">Education</p>
-      <div class="sec-head reveal">
-        <h2>Academics</h2>
-        <span class="idx">05 / education</span>
-      </div>
-      <div class="edu reveal">
-        <div class="edu-item">
-          <div class="deg">M.S., Computer Science</div>
-          <div class="sch">University of Florida</div>
-          <div class="yr">Aug 2024 — May 2026</div>
-        </div>
-        <div class="edu-item">
-          <div class="deg">B.Tech, Computer Science &amp; Business Systems</div>
-          <div class="sch">VIT-AP University</div>
-          <div class="yr">Aug 2020 — May 2024</div>
         </div>
       </div>
     </div>
@@ -451,7 +476,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
           Email me
         </a>
-        <a class="btn" href="https://www.linkedin.com/in/nitina-312980333" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://www.linkedin.com/in/nitin-a-312980333" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn" href="https://github.com/Nitin172503" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
