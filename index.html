@@ -370,8 +370,8 @@
         <span class="idx">01 / about</span>
       </div>
       <div class="about-grid reveal">
-        <p class="about-lede">I gravitate toward the parts of a system where <b>correctness meets scale</b> — queues, indexes, retry loops, the boring middle layer everyone forgets until it breaks at 3 a.m. My instinct on any new problem is to first <b>measure</b>, then change one thing, then measure again. Most of the wins on this page came from that loop, not from rewrites.</p>
-        <p class="about-lede">I like working at the seam between <b>backend systems and ML</b> — production APIs that have to stay fast under real traffic, data pipelines that have to stay honest under drift. I write code I can hand to someone else next quarter and have them ship from it on day one.</p>
+        <p class="about-lede">I gravitate toward the parts of a system where <b>correctness meets scale</b> — queues, indexes, retry loops, the boring middle layer everyone forgets until it breaks at 3 a.m. My working rule: <b>measure first, change one thing, measure again.</b> Most of the wins on this page came from that loop, not from rewrites.</p>
+        <p class="about-lede">I'm most comfortable at the <b>seam between backend systems and ML</b> — production APIs that have to stay fast under real traffic, data pipelines that have to stay honest under drift, LLM applications that need real engineering (bounded context, structured outputs, defensive parsing) not just prompt tricks. Available immediately, open to relocation.</p>
       </div>
     </div>
   </section>
@@ -443,12 +443,14 @@
       <div class="proj-list">
 
         <!-- PROJECT 1 -->
-        <article class="proj reveal" data-tech="java spring kafka">
+        <article class="proj reveal" data-tech="go redis prometheus docker">
           <div class="proj-head" tabindex="0" role="button" aria-expanded="false">
             <div class="proj-pnum">P01</div>
             <div>
-              <div class="proj-title">Microservice Transaction System</div>
-              <div class="proj-tagline">Async event streaming · Spring Boot + Kafka · 50 events/sec sustained</div>
+              <div class="proj-title">Distributed Task Queue
+                <span class="proj-updated"><span class="pulse-dot"></span>recently updated</span>
+              </div>
+              <div class="proj-tagline">Go · pluggable broker (memory/Redis) · Prometheus + Grafana · crash-safe with visibility-timeout reaper</div>
             </div>
             <div class="proj-toggle">expand
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
@@ -457,45 +459,41 @@
           <div class="proj-body">
             <div class="proj-body-inner">
               <div class="proj-detail">
-                <p>An asynchronous transaction processor on Spring Boot and Kafka using <b>producer-consumer event streaming</b>, sustaining 50 events/sec under load testing.</p>
-                <p>Durability and consistency come from <b>idempotent consumers</b>, transactional writes, and persistent storage integration. Algorithm work covered message ordering and deduplication guarantees.</p>
-                <p>Tested with integration scenarios for failure recovery, replay, and out-of-order event handling.</p>
-                <div class="proj-tags"><span class="tag hl">Java</span><span class="tag hl">Spring Boot</span><span class="tag hl">Kafka</span><span class="tag">Idempotency</span><span class="tag">Event-Driven</span></div>
+                <p>A priority-based distributed task queue in Go with a <b>pluggable broker</b> (in-memory <i>or</i> Redis — same application code), concurrent worker pool, and REST API. The live visualization in the hero is a small model of what this project actually implements.</p>
+                <p><b>Crash-safe by design.</b> Redis dequeue is a single Lua script that atomically moves a task from pending into a processing ZSet scored by deadline — a task is never lost between "popped" and "marked processing." A background <b>visibility-timeout reaper</b> reclaims tasks whose workers died or hung, retrying them with the same priority-decay/max-retry path as an explicit failure. Handlers run with <b>bounded timeouts and panic recovery</b> so one bad task can't take down a worker.</p>
+                <p>Ships with a full <b>observability stack</b> — Prometheus metrics, alert rules, and a Grafana dashboard auto-provisioned via docker-compose. Operational hardening includes bearer-token auth, backpressure (queue-depth cap → 429), and a dead-letter path with an explicit retry endpoint.</p>
+                <div class="proj-tags"><span class="tag hl">Go</span><span class="tag hl">Redis</span><span class="tag hl">Prometheus</span><span class="tag hl">Grafana</span><span class="tag">Docker</span><span class="tag">Lua</span></div>
+                <a class="proj-repo" href="https://github.com/Nitin172503/go-task-queue" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 8.84 21.5c.5.08.66-.22.66-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.16.57.67.48A10 10 0 0 0 12 2Z"/></svg>
+                  View on GitHub ↗
+                </a>
               </div>
               <div class="proj-diagram">
                 <svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <marker id="arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#EBA94A"/></marker>
+                    <marker id="arr3a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#EBA94A"/></marker>
                   </defs>
-                  <!-- Producer -->
-                  <rect x="14" y="80" width="80" height="56" rx="6" fill="#1A2632" stroke="#33475A"/>
-                  <text x="54" y="105" font-family="IBM Plex Mono" font-size="11" fill="#E9EEF3" text-anchor="middle">Producer</text>
-                  <text x="54" y="122" font-family="IBM Plex Mono" font-size="9" fill="#9FAEBD" text-anchor="middle">REST API</text>
-                  <!-- Kafka topic -->
-                  <rect x="135" y="50" width="90" height="120" rx="6" fill="#151F2A" stroke="#EBA94A"/>
-                  <text x="180" y="72" font-family="IBM Plex Mono" font-size="11" fill="#EBA94A" text-anchor="middle">Kafka Topic</text>
-                  <line x1="148" y1="86" x2="212" y2="86" stroke="#33475A"/>
-                  <rect x="148" y="94" width="64" height="12" fill="#1A2632" stroke="#33475A"/>
-                  <rect x="148" y="110" width="64" height="12" fill="#1A2632" stroke="#33475A"/>
-                  <rect x="148" y="126" width="64" height="12" fill="#1A2632" stroke="#33475A"/>
-                  <text x="180" y="156" font-family="IBM Plex Mono" font-size="9" fill="#9FAEBD" text-anchor="middle">partitioned</text>
-                  <!-- Consumers -->
-                  <rect x="262" y="52" width="84" height="40" rx="6" fill="#1A2632" stroke="#33475A"/>
-                  <text x="304" y="76" font-family="IBM Plex Mono" font-size="10" fill="#E9EEF3" text-anchor="middle">Consumer A</text>
-                  <rect x="262" y="100" width="84" height="40" rx="6" fill="#1A2632" stroke="#33475A"/>
-                  <text x="304" y="124" font-family="IBM Plex Mono" font-size="10" fill="#E9EEF3" text-anchor="middle">Consumer B</text>
-                  <rect x="262" y="148" width="84" height="40" rx="6" fill="#1A2632" stroke="#33475A"/>
-                  <text x="304" y="172" font-family="IBM Plex Mono" font-size="10" fill="#E9EEF3" text-anchor="middle">Consumer C</text>
-                  <!-- Arrows -->
-                  <line x1="94" y1="108" x2="132" y2="108" stroke="#EBA94A" stroke-width="1.5" marker-end="url(#arr1)"/>
-                  <line x1="225" y1="100" x2="259" y2="72" stroke="#EBA94A" stroke-width="1.5" marker-end="url(#arr1)"/>
-                  <line x1="225" y1="115" x2="259" y2="120" stroke="#EBA94A" stroke-width="1.5" marker-end="url(#arr1)"/>
-                  <line x1="225" y1="130" x2="259" y2="168" stroke="#EBA94A" stroke-width="1.5" marker-end="url(#arr1)"/>
-                  <!-- DB -->
-                  <ellipse cx="304" cy="216" rx="34" ry="8" fill="#151F2A" stroke="#33475A"/>
-                  <path d="M270 216 v-12 a34,8 0 0 0 68 0 v12" fill="#151F2A" stroke="#33475A"/>
-                  <text x="304" y="218" font-family="IBM Plex Mono" font-size="9" fill="#9FAEBD" text-anchor="middle">durable store</text>
-                  <line x1="304" y1="188" x2="304" y2="204" stroke="#33475A" stroke-dasharray="2,2"/>
+                  <!-- REST API -->
+                  <rect x="14" y="18" width="332" height="30" rx="5" fill="#1A2632" stroke="#33475A"/>
+                  <text x="180" y="37" font-family="IBM Plex Mono" font-size="10" fill="#E9EEF3" text-anchor="middle">REST API · POST /tasks · GET /stats · /metrics · /healthz</text>
+                  <!-- Broker interface -->
+                  <rect x="14" y="58" width="332" height="26" rx="5" fill="rgba(235,169,74,0.06)" stroke="#EBA94A"/>
+                  <text x="180" y="75" font-family="IBM Plex Mono" font-size="10" fill="#EBA94A" text-anchor="middle">Broker interface (Enqueue · Dequeue · Ack)</text>
+                  <!-- Memory / Redis -->
+                  <rect x="34" y="96" width="140" height="60" rx="5" fill="#1A2632" stroke="#33475A"/>
+                  <text x="104" y="118" font-family="IBM Plex Mono" font-size="10" fill="#E9EEF3" text-anchor="middle">MemoryBroker</text>
+                  <text x="104" y="134" font-family="IBM Plex Mono" font-size="9" fill="#9FAEBD" text-anchor="middle">container/heap</text>
+                  <text x="104" y="148" font-family="IBM Plex Mono" font-size="9" fill="#9FAEBD" text-anchor="middle">sync.Mutex</text>
+                  <rect x="186" y="96" width="140" height="60" rx="5" fill="#1A2632" stroke="#EBA94A"/>
+                  <text x="256" y="118" font-family="IBM Plex Mono" font-size="10" fill="#EBA94A" text-anchor="middle">RedisBroker</text>
+                  <text x="256" y="134" font-family="IBM Plex Mono" font-size="9" fill="#9FAEBD" text-anchor="middle">pending ZSet + processing ZSet</text>
+                  <text x="256" y="148" font-family="IBM Plex Mono" font-size="9" fill="#9FAEBD" text-anchor="middle">Lua atomic dequeue</text>
+                  <!-- Worker pool -->
+                  <rect x="14" y="168" width="332" height="30" rx="5" fill="#1A2632" stroke="#33475A"/>
+                  <text x="180" y="187" font-family="IBM Plex Mono" font-size="10" fill="#E9EEF3" text-anchor="middle">Worker pool · timeout · panic-safe · retry with priority decay</text>
+                  <!-- reaper -->
+                  <path d="M328 132 Q 355 178 300 195" fill="none" stroke="#D96D6D" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arr3a)"/>
+                  <text x="270" y="216" font-family="IBM Plex Mono" font-size="9" fill="#D96D6D" text-anchor="middle">visibility-timeout reaper</text>
                 </svg>
               </div>
             </div>
@@ -568,15 +566,14 @@
           </div>
         </article>
 
+
         <!-- PROJECT 3 -->
-        <article class="proj reveal" data-tech="go redis prometheus docker">
+        <article class="proj reveal" data-tech="java spring kafka">
           <div class="proj-head" tabindex="0" role="button" aria-expanded="false">
             <div class="proj-pnum">P03</div>
             <div>
-              <div class="proj-title">Distributed Task Queue
-                <span class="proj-updated"><span class="pulse-dot"></span>recently updated</span>
-              </div>
-              <div class="proj-tagline">Go · pluggable broker (memory/Redis) · Prometheus + Grafana · crash-safe with visibility-timeout reaper</div>
+              <div class="proj-title">Microservice Transaction System</div>
+              <div class="proj-tagline">Async event streaming · Spring Boot + Kafka · 50 events/sec sustained</div>
             </div>
             <div class="proj-toggle">expand
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
@@ -585,46 +582,51 @@
           <div class="proj-body">
             <div class="proj-body-inner">
               <div class="proj-detail">
-                <p>A priority-based distributed task queue in Go with a <b>pluggable broker</b> (in-memory <i>or</i> Redis — same application code), concurrent worker pool, and REST API. The live visualization in the hero is a small model of what this project actually implements.</p>
-                <p><b>Crash-safe by design.</b> Redis dequeue is a single Lua script that atomically moves a task from pending into a processing ZSet scored by deadline — a task is never lost between "popped" and "marked processing." A background <b>visibility-timeout reaper</b> reclaims tasks whose workers died or hung, retrying them with the same priority-decay/max-retry path as an explicit failure. Handlers run with <b>bounded timeouts and panic recovery</b> so one bad task can't take down a worker.</p>
-                <p>Ships with a full <b>observability stack</b> — Prometheus metrics, alert rules, and a Grafana dashboard auto-provisioned via docker-compose. Operational hardening includes bearer-token auth, backpressure (queue-depth cap → 429), and a dead-letter path with an explicit retry endpoint.</p>
-                <div class="proj-tags"><span class="tag hl">Go</span><span class="tag hl">Redis</span><span class="tag hl">Prometheus</span><span class="tag hl">Grafana</span><span class="tag">Docker</span><span class="tag">Lua</span></div>
-                <a class="proj-repo" href="https://github.com/Nitin172503/go-task-queue" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 8.84 21.5c.5.08.66-.22.66-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.16.57.67.48A10 10 0 0 0 12 2Z"/></svg>
-                  View on GitHub ↗
-                </a>
+                <p>An asynchronous transaction processor on Spring Boot and Kafka using <b>producer-consumer event streaming</b>, sustaining 50 events/sec under load testing.</p>
+                <p>Durability and consistency come from <b>idempotent consumers</b>, transactional writes, and persistent storage integration. Algorithm work covered message ordering and deduplication guarantees.</p>
+                <p>Tested with integration scenarios for failure recovery, replay, and out-of-order event handling.</p>
+                <div class="proj-tags"><span class="tag hl">Java</span><span class="tag hl">Spring Boot</span><span class="tag hl">Kafka</span><span class="tag">Idempotency</span><span class="tag">Event-Driven</span></div>
               </div>
               <div class="proj-diagram">
                 <svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <marker id="arr3a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#EBA94A"/></marker>
+                    <marker id="arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#EBA94A"/></marker>
                   </defs>
-                  <!-- REST API -->
-                  <rect x="14" y="18" width="332" height="30" rx="5" fill="#1A2632" stroke="#33475A"/>
-                  <text x="180" y="37" font-family="IBM Plex Mono" font-size="10" fill="#E9EEF3" text-anchor="middle">REST API · POST /tasks · GET /stats · /metrics · /healthz</text>
-                  <!-- Broker interface -->
-                  <rect x="14" y="58" width="332" height="26" rx="5" fill="rgba(235,169,74,0.06)" stroke="#EBA94A"/>
-                  <text x="180" y="75" font-family="IBM Plex Mono" font-size="10" fill="#EBA94A" text-anchor="middle">Broker interface (Enqueue · Dequeue · Ack)</text>
-                  <!-- Memory / Redis -->
-                  <rect x="34" y="96" width="140" height="60" rx="5" fill="#1A2632" stroke="#33475A"/>
-                  <text x="104" y="118" font-family="IBM Plex Mono" font-size="10" fill="#E9EEF3" text-anchor="middle">MemoryBroker</text>
-                  <text x="104" y="134" font-family="IBM Plex Mono" font-size="9" fill="#9FAEBD" text-anchor="middle">container/heap</text>
-                  <text x="104" y="148" font-family="IBM Plex Mono" font-size="9" fill="#9FAEBD" text-anchor="middle">sync.Mutex</text>
-                  <rect x="186" y="96" width="140" height="60" rx="5" fill="#1A2632" stroke="#EBA94A"/>
-                  <text x="256" y="118" font-family="IBM Plex Mono" font-size="10" fill="#EBA94A" text-anchor="middle">RedisBroker</text>
-                  <text x="256" y="134" font-family="IBM Plex Mono" font-size="9" fill="#9FAEBD" text-anchor="middle">pending ZSet + processing ZSet</text>
-                  <text x="256" y="148" font-family="IBM Plex Mono" font-size="9" fill="#9FAEBD" text-anchor="middle">Lua atomic dequeue</text>
-                  <!-- Worker pool -->
-                  <rect x="14" y="168" width="332" height="30" rx="5" fill="#1A2632" stroke="#33475A"/>
-                  <text x="180" y="187" font-family="IBM Plex Mono" font-size="10" fill="#E9EEF3" text-anchor="middle">Worker pool · timeout · panic-safe · retry with priority decay</text>
-                  <!-- reaper -->
-                  <path d="M328 132 Q 355 178 300 195" fill="none" stroke="#D96D6D" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arr3a)"/>
-                  <text x="270" y="216" font-family="IBM Plex Mono" font-size="9" fill="#D96D6D" text-anchor="middle">visibility-timeout reaper</text>
+                  <!-- Producer -->
+                  <rect x="14" y="80" width="80" height="56" rx="6" fill="#1A2632" stroke="#33475A"/>
+                  <text x="54" y="105" font-family="IBM Plex Mono" font-size="11" fill="#E9EEF3" text-anchor="middle">Producer</text>
+                  <text x="54" y="122" font-family="IBM Plex Mono" font-size="9" fill="#9FAEBD" text-anchor="middle">REST API</text>
+                  <!-- Kafka topic -->
+                  <rect x="135" y="50" width="90" height="120" rx="6" fill="#151F2A" stroke="#EBA94A"/>
+                  <text x="180" y="72" font-family="IBM Plex Mono" font-size="11" fill="#EBA94A" text-anchor="middle">Kafka Topic</text>
+                  <line x1="148" y1="86" x2="212" y2="86" stroke="#33475A"/>
+                  <rect x="148" y="94" width="64" height="12" fill="#1A2632" stroke="#33475A"/>
+                  <rect x="148" y="110" width="64" height="12" fill="#1A2632" stroke="#33475A"/>
+                  <rect x="148" y="126" width="64" height="12" fill="#1A2632" stroke="#33475A"/>
+                  <text x="180" y="156" font-family="IBM Plex Mono" font-size="9" fill="#9FAEBD" text-anchor="middle">partitioned</text>
+                  <!-- Consumers -->
+                  <rect x="262" y="52" width="84" height="40" rx="6" fill="#1A2632" stroke="#33475A"/>
+                  <text x="304" y="76" font-family="IBM Plex Mono" font-size="10" fill="#E9EEF3" text-anchor="middle">Consumer A</text>
+                  <rect x="262" y="100" width="84" height="40" rx="6" fill="#1A2632" stroke="#33475A"/>
+                  <text x="304" y="124" font-family="IBM Plex Mono" font-size="10" fill="#E9EEF3" text-anchor="middle">Consumer B</text>
+                  <rect x="262" y="148" width="84" height="40" rx="6" fill="#1A2632" stroke="#33475A"/>
+                  <text x="304" y="172" font-family="IBM Plex Mono" font-size="10" fill="#E9EEF3" text-anchor="middle">Consumer C</text>
+                  <!-- Arrows -->
+                  <line x1="94" y1="108" x2="132" y2="108" stroke="#EBA94A" stroke-width="1.5" marker-end="url(#arr1)"/>
+                  <line x1="225" y1="100" x2="259" y2="72" stroke="#EBA94A" stroke-width="1.5" marker-end="url(#arr1)"/>
+                  <line x1="225" y1="115" x2="259" y2="120" stroke="#EBA94A" stroke-width="1.5" marker-end="url(#arr1)"/>
+                  <line x1="225" y1="130" x2="259" y2="168" stroke="#EBA94A" stroke-width="1.5" marker-end="url(#arr1)"/>
+                  <!-- DB -->
+                  <ellipse cx="304" cy="216" rx="34" ry="8" fill="#151F2A" stroke="#33475A"/>
+                  <path d="M270 216 v-12 a34,8 0 0 0 68 0 v12" fill="#151F2A" stroke="#33475A"/>
+                  <text x="304" y="218" font-family="IBM Plex Mono" font-size="9" fill="#9FAEBD" text-anchor="middle">durable store</text>
+                  <line x1="304" y1="188" x2="304" y2="204" stroke="#33475A" stroke-dasharray="2,2"/>
                 </svg>
               </div>
             </div>
           </div>
         </article>
+
 
       </div>
     </div>
@@ -640,42 +642,42 @@
         <div class="stack-col">
           <h4>Languages</h4>
           <ul>
-            <li class="stack-item" tabindex="0" data-tip="Used daily — Flask inference API, drift detection workflows, data preprocessing pipelines at SmartInternz.">Python<span class="hint">↘</span></li>
-            <li class="stack-item" tabindex="0" data-tip="Microservice Transaction System on Spring Boot + Kafka. ANTLR4 work on the Delphi → LLVM compiler.">Java<span class="hint">↘</span></li>
-            <li class="stack-item" tabindex="0" data-tip="Distributed Task Queue project: goroutines, channels, atomic primitives, race-safe CI.">Go<span class="hint">↘</span></li>
+            <li class="stack-item" tabindex="0" data-tip="Distributed Task Queue and AI SWE Copilot backends — goroutines, channels, atomic primitives, Lua-scripted Redis dequeue.">Go<span class="hint">↘</span></li>
+            <li class="stack-item" tabindex="0" data-tip="Flask inference API at SmartInternz, drift-detection workflows, and preprocessing pipelines.">Python<span class="hint">↘</span></li>
+            <li class="stack-item" tabindex="0" data-tip="Microservice Transaction System on Spring Boot + Kafka.">Java<span class="hint">↘</span></li>
+            <li class="stack-item" tabindex="0" data-tip="AI SWE Copilot frontend — React + typed API layer end-to-end.">TypeScript / JavaScript<span class="hint">↘</span></li>
             <li class="stack-item" tabindex="0" data-tip="Coursework in systems programming.">C++<span class="hint">↘</span></li>
-            <li class="stack-item" tabindex="0" data-tip="React frontend on the AI Fitness Platform — typed end-to-end.">TypeScript<span class="hint">↘</span></li>
-            <li class="stack-item" tabindex="0" data-tip="Daily — PostgreSQL tuning at Iconize, MySQL for transactional workloads, preprocessing in SQL at SmartInternz.">SQL<span class="hint">↘</span></li>
+            <li class="stack-item" tabindex="0" data-tip="PostgreSQL tuning at Iconize, MySQL for transactional workloads, preprocessing pipelines at SmartInternz.">SQL<span class="hint">↘</span></li>
           </ul>
         </div>
         <div class="stack-col">
           <h4>Backend &amp; APIs</h4>
           <ul>
             <li class="stack-item" tabindex="0" data-tip="Microservice Transaction System: event streaming, idempotent consumers, integration tests.">Spring Boot<span class="hint">↘</span></li>
-            <li class="stack-item" tabindex="0" data-tip="Inference API at SmartInternz — P95 under 200ms with batching and request validation.">FastAPI &amp; Flask<span class="hint">↘</span></li>
-            <li class="stack-item" tabindex="0" data-tip="AI Fitness Platform backend: 200+ concurrent users, structured logging, rate limiting.">Node.js / Express<span class="hint">↘</span></li>
-            <li class="stack-item" tabindex="0" data-tip="Genomic analytics platform at Iconize — modular services with retry handling.">Microservices<span class="hint">↘</span></li>
-            <li class="stack-item" tabindex="0" data-tip="Producer-consumer streaming with Kafka in the Transaction System project.">Event-Driven Architecture<span class="hint">↘</span></li>
+            <li class="stack-item" tabindex="0" data-tip="Inference API at SmartInternz — P95 under 200ms with batching and validation.">FastAPI &amp; Flask<span class="hint">↘</span></li>
+            <li class="stack-item" tabindex="0" data-tip="Backend services on Node.js with structured logging and rate limiting.">Node.js / Express<span class="hint">↘</span></li>
+            <li class="stack-item" tabindex="0" data-tip="Producer-consumer streaming in the Microservice Transaction System project.">Kafka<span class="hint">↘</span></li>
+            <li class="stack-item" tabindex="0" data-tip="Genomic analytics platform at Iconize — modular services with retry handling and fault isolation.">Microservices<span class="hint">↘</span></li>
           </ul>
         </div>
         <div class="stack-col">
-          <h4>Data &amp; ML</h4>
+          <h4>AI &amp; ML</h4>
           <ul>
-            <li class="stack-item" tabindex="0" data-tip="12+ indexes, execution-plan analysis, connection pooling — 40% latency drop at Iconize.">PostgreSQL<span class="hint">↘</span></li>
-            <li class="stack-item" tabindex="0" data-tip="Transactional workloads in the Transaction System project.">MySQL<span class="hint">↘</span></li>
-            <li class="stack-item" tabindex="0" data-tip="Session storage for the AI Fitness Platform.">MongoDB<span class="hint">↘</span></li>
-            <li class="stack-item" tabindex="0" data-tip="Traffic prediction at SmartInternz — 92% accuracy on a 100K-record dataset.">Random Forest / Gradient Boosting<span class="hint">↘</span></li>
+            <li class="stack-item" tabindex="0" data-tip="AI SWE Copilot — one interface, two live implementations (Ollama offline, Gemini production).">LLM APIs (Ollama / Gemini)<span class="hint">↘</span></li>
+            <li class="stack-item" tabindex="0" data-tip="Bounded context-window management for arbitrarily large repos; structured JSON output with defensive parsing.">Context / structured output<span class="hint">↘</span></li>
+            <li class="stack-item" tabindex="0" data-tip="Traffic prediction at SmartInternz — 92% accuracy on 100K+ records.">Random Forest / Gradient Boosting<span class="hint">↘</span></li>
             <li class="stack-item" tabindex="0" data-tip="Preprocessing pipelines for high-volume datasets.">Pandas &amp; NumPy<span class="hint">↘</span></li>
+            <li class="stack-item" tabindex="0" data-tip="Automated drift detection triggering retraining workflows at SmartInternz.">Drift detection<span class="hint">↘</span></li>
           </ul>
         </div>
         <div class="stack-col">
           <h4>Cloud &amp; DevOps</h4>
           <ul>
             <li class="stack-item" tabindex="0" data-tip="EC2 + CloudWatch dashboards and alarms — 35% faster anomaly detection at SmartInternz.">AWS (EC2, CloudWatch)<span class="hint">↘</span></li>
-            <li class="stack-item" tabindex="0" data-tip="Containerized every service I shipped at Iconize.">Docker<span class="hint">↘</span></li>
-            <li class="stack-item" tabindex="0" data-tip="Rolling updates and health checks; cut deploy time from 20 to 6 minutes.">Kubernetes<span class="hint">↘</span></li>
-            <li class="stack-item" tabindex="0" data-tip="Pipelines with rolling updates, readiness checks, and health monitoring.">Jenkins<span class="hint">↘</span></li>
-            <li class="stack-item" tabindex="0" data-tip="CI workflows including the race-safe pipeline for the Go task queue.">GitHub Actions<span class="hint">↘</span></li>
+            <li class="stack-item" tabindex="0" data-tip="Containerized every service I shipped; docker-compose for the observability stack.">Docker<span class="hint">↘</span></li>
+            <li class="stack-item" tabindex="0" data-tip="Rolling updates and readiness checks; cut deploy time from 20 to 6 minutes at Iconize.">Kubernetes<span class="hint">↘</span></li>
+            <li class="stack-item" tabindex="0" data-tip="Metrics, alert rules, and Grafana dashboards auto-provisioned for the Task Queue project.">Prometheus / Grafana<span class="hint">↘</span></li>
+            <li class="stack-item" tabindex="0" data-tip="Jenkins pipelines with rolling updates and health monitoring; GitHub Actions CI for the Go task queue.">Jenkins / GitHub Actions<span class="hint">↘</span></li>
           </ul>
         </div>
       </div>
